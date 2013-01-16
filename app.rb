@@ -1,15 +1,19 @@
-require 'sinatra'
+require 'sinatra/base'
 require "sinatra/json"
 require 'haml'
 
-set :haml, :format => :html5, :attr_wrapper => '"'
+class SimpleWordCount < Sinatra::Base
+  helpers Sinatra::JSON
 
-get '/' do
-  haml :index 
-end
+  set :haml, :format => :html5, :attr_wrapper => '"'
 
-post '/count' do
-  text = params[:text]
-  words = text.split
-  json :count => words.count
+  get '/' do
+    haml :index 
+  end
+
+  post '/count' do
+    text = params[:text]
+    words = text.split
+    json :count => words.count
+  end
 end
