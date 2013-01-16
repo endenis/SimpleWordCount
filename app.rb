@@ -1,4 +1,5 @@
 require 'sinatra'
+require "sinatra/json"
 require 'haml'
 
 set :haml, :format => :html5, :attr_wrapper => '"'
@@ -9,6 +10,6 @@ end
 
 post '/count' do
   text = params[:text]
-  words = text.delete("'").split /\W+/
-  "Count: #{words.count}"
+  words = text.split
+  json :count => words.count
 end

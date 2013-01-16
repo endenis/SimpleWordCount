@@ -1,4 +1,20 @@
+#count Press 'Count' to count number of words in text.
+%br
 %form{action: '/count', method: 'POST', id: 'textForm'}
   %textarea{name: 'text', rows: '15', cols: '45'}
   %br
   %input{type: 'submit', name: 'submit', value: 'Count'}
+
+:javascript
+  $(function() {
+    $("#textForm").submit(function(e) {
+      e.preventDefault();
+      $.post("/count",
+        $("#textForm").serialize(),
+        function(data) {
+          $("#count").text("Count: " + data.count);
+        },
+        "json"
+      );
+    });
+  });
