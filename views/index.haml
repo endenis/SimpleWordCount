@@ -1,1 +1,4 @@
-%p Hello, World!
+%form{action: '/count', method: 'POST', id: 'textForm'}
+  %textarea{name: 'text', rows: '15', cols: '45'}
+  %br
+  %input{type: 'submit', name: 'submit', value: 'Count'}
